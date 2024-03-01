@@ -1,0 +1,18 @@
+{
+  "name": "playwright-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server . -p 3000",
+    "test": "playwright test --project=chromium",
+    "jest-test": "npx jest calculator.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.41.2",
+    "playwright": "^1.41.2"
+  }
+}
