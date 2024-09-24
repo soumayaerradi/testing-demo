@@ -5,6 +5,7 @@ const playwrightConfig = {
     use: {
         actionTimeout: 0,
         baseURL: "http://localhost:3000",
+        headless: false,
     },
     webServer: [
         {
