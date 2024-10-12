@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "http-server . -p 3000",
-    "test": "playwright test --project=chromium",
+    "test": "playwright test",
+    "test-chromium": "playwright test --project=chromium",
     "jest-test": "npx jest calculator.test.js"
   },
   "keywords": [],

@@ -3,3 +3,4 @@
 /cypress-demo/node_modules/
 /.idea/
 .DS_Store
+/cypress-demo/.idea/

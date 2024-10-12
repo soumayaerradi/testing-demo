@@ -1,27 +1,45 @@
-const {devices} = require('@playwright/test');
+const { devices } = require('@playwright/test');
 
-const playwrightConfig = {
-    testDir: "./tests",
+const config = {
+    testDir: './tests',
+    timeout: 30000, // Set a default timeout for each test
+    retries: 0, // You can change the number of retries on test failure
     use: {
-        actionTimeout: 0,
-        baseURL: "http://localhost:3000",
-        headless: false,
+        baseURL: 'http://localhost:3000',
+        headless: false, // Set to false if you want to see the browser during test
+        screenshot: 'only-on-failure', // Take screenshots on failure
+        video: 'retain-on-failure', // Record video for failed tests
     },
-    webServer: [
-        {
-            command: "npm start",
-            url: "http://localhost:3000",
-            timeout: 5000,
-            reuseExistingServer: true,
-        },
-    ],
     projects: [
+        // Default Chromium Project
         {
             name: 'chromium',
-            use: {...devices['chromium']},
+            use: {
+                ...devices['Desktop Chrome'], // Default to Desktop Chrome
+            },
+        },
+        // Firefox Project for cross-browser tests
+        {
+            name: 'firefox',
+            use: {
+                ...devices['Desktop Firefox'],
+            },
+        },
+        // WebKit (Safari) Project for cross-browser tests
+        {
+            name: 'webkit',
+            use: {
+                ...devices['Desktop Safari'],
+            },
         },
     ],
-    outputDir: "test-results",
+    // Optionally, you can configure a web server to run before tests
+    webServer: {
+        command: 'npm start',
+        port: 3000,
+        reuseExistingServer: !process.env.CI,
+    },
+    outputDir: 'test-results/', // Where to store test results
 };
 
-module.exports = playwrightConfig;
+module.exports = config;

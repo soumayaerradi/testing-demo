@@ -23,3 +23,20 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+
+Cypress.Commands.add('performCalculation', (num1, num2, operation, expectedResult) => {
+    // Type the numbers in the input fields
+    cy.get('#num1').clear().type(num1);
+    cy.get('#num2').clear().type(num2);
+
+    // Perform the operation (either addition or subtraction)
+    if (operation === 'add') {
+        cy.get('#add').click();
+    } else if (operation === 'subtract') {
+        cy.get('#subtract').click();
+    }
+
+    // Validate the result
+    cy.get('#result').should('have.text', `Result: ${expectedResult}`);
+});
